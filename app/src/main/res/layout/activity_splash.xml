@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/saludo_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="¡Hola! 👋"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/contenedor_imagenes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/saludo_texto"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imagen_bandera"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bandera_panama"
+            android:scaleType="fitCenter"
+            android:contentDescription="Bandera de Panamá" />
+
+        <ImageView
+            android:id="@+id/imagen_logo_utp"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/logo_utp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Logo de la UTP" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contenedor_imagenes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="¡Bienvenido a HistoSensores!"
+        android:textSize="22sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>
