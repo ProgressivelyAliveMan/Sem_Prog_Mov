@@ -17,25 +17,20 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Referenciar las dos nuevas imágenes
         ImageView imagenBandera = findViewById(R.id.imagen_bandera);
         ImageView imagenLogoUtp = findViewById(R.id.imagen_logo_utp);
 
-        // Cargar la animación
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
-        // Aplicar la animación a ambas imágenes
         imagenBandera.startAnimation(fadeIn);
         imagenLogoUtp.startAnimation(fadeIn);
 
-        // El Handler para cambiar de actividad permanece igual
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Iniciar la actividad del Quiz después de la duración establecida
-                Intent intent = new Intent(SplashActivity.this, QuizActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(intent);
-                finish(); // Cierra esta actividad para que el usuario no pueda volver a ella
+                finish();
             }
         }, SPLASH_DURATION);
     }

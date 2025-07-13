@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MenuActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona una opción"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="48dp"/>
+
+    <Button
+        android:id="@+id/btn_prueba_matematica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prueba Matemática"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_acelerometro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acelerómetro"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_detector_metales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detector de Metales"
+        android:layout_marginBottom="16dp"/>
+
+</LinearLayout>

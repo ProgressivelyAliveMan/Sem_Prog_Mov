@@ -1,4 +1,4 @@
-package com.example.accel; // Asegúrate de que este sea tu paquete
+package com.example.accel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,12 @@ public class QuizActivity extends AppCompatActivity {
     private TextView tvPreguntaNumero, tvPreguntaTexto;
     private RadioGroup radioGroup;
     private RadioButton rbOpcion1, rbOpcion2, rbOpcion3;
-    private Button btnVerificar, btnSiguientePantalla;
+    private Button btnVerificar;
+    // Eliminamos btnSiguientePantalla porque la navegación a los sensores
+    // se gestionará desde el MenuActivity.
+    // private Button btnSiguientePantalla;
+
+    private Button btnVolverMenuQuiz; // Declaramos el nuevo botón para volver al menú
 
     private final String[] preguntas = {
             "¿Quién fue el primer europeo en ver el Océano Pacífico desde Panamá?",
@@ -59,7 +64,11 @@ public class QuizActivity extends AppCompatActivity {
         rbOpcion2 = findViewById(R.id.opcion2);
         rbOpcion3 = findViewById(R.id.opcion3);
         btnVerificar = findViewById(R.id.boton_verificar);
-        btnSiguientePantalla = findViewById(R.id.boton_siguiente_pantalla);
+        // Eliminamos la inicialización de btnSiguientePantalla
+        // btnSiguientePantalla = findViewById(R.id.boton_siguiente_pantalla);
+
+        // Inicializar el nuevo botón de volver al menú
+        btnVolverMenuQuiz = findViewById(R.id.btn_volver_menu_quiz); // Asegúrate de que este ID coincida con tu XML
 
         mostrarPregunta();
 
@@ -70,11 +79,11 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-        btnSiguientePantalla.setOnClickListener(new View.OnClickListener() {
+        // Configurar el Listener para el botón de volver al menú
+        btnVolverMenuQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuizActivity.this, AccelerometerActivity.class);
-                startActivity(intent);
+                finish(); // Esto cierra QuizActivity y regresa a la actividad anterior (MenuActivity)
             }
         });
     }
@@ -98,6 +107,8 @@ public class QuizActivity extends AppCompatActivity {
                 btnVerificar.setText("Verificar Respuesta");
                 mostrarPregunta();
             });
+            // Opcional: Si quieres ocultar el botón de volver cuando el quiz está "terminado" y se muestra el reiniciar
+            // btnVolverMenuQuiz.setVisibility(View.GONE); // Puedes añadir esta línea si lo deseas
         }
     }
 
@@ -120,4 +131,3 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 }
-

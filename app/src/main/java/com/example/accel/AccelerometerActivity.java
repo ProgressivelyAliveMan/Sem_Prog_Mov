@@ -1,12 +1,11 @@
 package com.example.accel;
 
-import android.os.Bundle;
-
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,8 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
     private Sensor acelerometro;
     private TextView acelerometroDatos;
 
-    private Button btnVolver, btnSiguiente;
+    private Button btnVolver;
+    // private Button btnSiguiente; // <-- THIS LINE IS REMOVED
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +55,16 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         }
 
         btnVolver = findViewById(R.id.boton_volver);
-        btnSiguiente = findViewById(R.id.boton_siguiente);
+        // btnSiguiente = findViewById(R.id.boton_siguiente); // <-- THIS LINE IS REMOVED
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Cierra la actividad actual y vuelve a la anterior (QuizActivity)
+                // Cierra la actividad actual y vuelve a la anterior (MenuActivity)
                 finish();
             }
         });
-
-        btnSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Inicia la actividad del magnetómetro
-                Intent intent = new Intent(AccelerometerActivity.this, MagnetometerActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-
 
     @Override
     protected void onResume() {
@@ -97,7 +87,7 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        // Este método se llama cuando los datos del sensor cambian
+        // Este metodo se llama cuando los datos del sensor cambian
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float x = event.values[0]; // Aceleración en el eje X
             float y = event.values[1]; // Aceleración en el eje Y
