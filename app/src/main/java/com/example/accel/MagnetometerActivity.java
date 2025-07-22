@@ -15,14 +15,14 @@ public class MagnetometerActivity extends AppCompatActivity implements SensorEve
 
     private SensorManager sensorManager;
     private Sensor magnetometro;
-    private TextView magnetometerDatos;
+    private TextView datosMagnetometro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magnetometer);
 
-        magnetometerDatos = findViewById(R.id.magnetometer_datos);
+        datosMagnetometro = findViewById(R.id.magnetometer_datos);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
@@ -30,11 +30,11 @@ public class MagnetometerActivity extends AppCompatActivity implements SensorEve
 
             if (magnetometro == null) {
                 Toast.makeText(this, "Magnetómetro no disponible en este dispositivo.", Toast.LENGTH_LONG).show();
-                magnetometerDatos.setText("Magnetómetro no disponible.");
+                datosMagnetometro.setText("Magnetómetro no disponible.");
             }
         } else {
             Toast.makeText(this, "Servicio de sensores no disponible.", Toast.LENGTH_LONG).show();
-            magnetometerDatos.setText("Servicio de sensores no disponible.");
+            datosMagnetometro.setText("Servicio de sensores no disponible.");
         }
 
         Button btnVolver = findViewById(R.id.boton_volver_magnetometro);
@@ -67,7 +67,7 @@ public class MagnetometerActivity extends AppCompatActivity implements SensorEve
             double magnitud = Math.sqrt(x*x + y*y + z*z);
 
             String data = String.format("X: %.2f μT\nY: %.2f μT\nZ: %.2f μT\nMagnitud: %.2f μT", x, y, z, magnitud);
-            magnetometerDatos.setText(data);
+            datosMagnetometro.setText(data);
 
             // Opcional: Lógica simple para una "detección" visual o sonora de metales
             if (magnitud > 100) { // Este umbral es un ejemplo, ajústalo según tus pruebas
