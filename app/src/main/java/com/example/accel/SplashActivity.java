@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -37,7 +36,9 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                // Cuando el contador termina, la barra llega al 100%
                 progressBar.setProgress(100);
+                // Ahora, inicia la animación de salida
                 iniciarFadeOut();
             }
         }.start();
@@ -55,18 +56,17 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // Cuando la animación de salida termina, inicia la siguiente actividad
-                // NOTA: Asumo que la siguiente pantalla es MenuActivity, cámbialo si es necesario
+                // Cuando la animación de salida termina, inicia la siguiente actividad.
                 Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(intent);
-                finish();
+                finish(); // Cierra esta actividad para que no se pueda volver a ella
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        // Inicia la animación en el contenedor principal
+        // Inicia la animación en el contenedor principal que tiene todos los elementos
         mainContainer.startAnimation(fadeOut);
     }
 }
