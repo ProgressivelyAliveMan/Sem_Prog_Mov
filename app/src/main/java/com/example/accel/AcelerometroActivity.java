@@ -134,19 +134,18 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
             constraintSet.setVerticalBias(burbujaNivel.getId(), biasY);
             constraintSet.applyTo(burbujaNivelLayout);
 
-            boolean isNiveladoXYZ = false;
             boolean isZLevel = Math.abs(z - GRAVEDAD_IDEAL) < TOLERANCIA_GRAVEDAD;
             boolean isXYLevel = Math.abs(x) < TOLERANCIA_INCLINACION && Math.abs(y) < TOLERANCIA_INCLINACION;
 
             if (isZLevel && isXYLevel) {
                 mainLayout.setBackgroundColor(Color.parseColor("#E8F5E9"));
                 burbujaNivelLayout.setBackgroundColor(Color.parseColor("#A5D6A7"));
-                textoNivelado.setText("¡NIVELADO! ✅");
+                textoNivelado.setText("¡NIVELADO (BOCA ARRIBA)! ✅");
                 textoNivelado.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
             } else if (isXYLevel) {
                 mainLayout.setBackgroundColor(Color.parseColor("#FFFDE7"));
                 burbujaNivelLayout.setBackgroundColor(Color.parseColor("#FFCC80"));
-                textoNivelado.setText("Horizontalmente nivelado");
+                textoNivelado.setText("¡NIVELADO (BOCA ABAJO)! ✅");
                 textoNivelado.setTextColor(ContextCompat.getColor(this, android.R.color.holo_orange_dark));
             } else {
                 mainLayout.setBackgroundColor(Color.WHITE);
