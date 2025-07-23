@@ -21,12 +21,12 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
     private Sensor acelerometro;
     private TextView acelerometroDatos;
     private Button btnVolver;
-    private ConstraintLayout mainLayout; // Variable para el layout principal
+    private ConstraintLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accelerometer);
+        setContentView(R.layout.activity_acelerometro);
 
         // Inicializar vistas
         acelerometroDatos = findViewById(R.id.acelerometro_datos);
