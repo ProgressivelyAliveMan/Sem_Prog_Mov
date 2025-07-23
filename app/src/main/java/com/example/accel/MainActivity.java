@@ -15,43 +15,45 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    // Duración de la carga secundaria (después del splash nativo)
     private static final int SECONDARY_LOADING_DURATION = 3000;
     private ProgressBar progressBar;
     private RelativeLayout loadingOverlay;
     private LinearLayout loadingContentContainer;
-    private static final String PREFS_NAME = "MyPrefsFile";
-    private static final String KEY_HAS_SEEN_LOADING = "hasSeenLoading";
+
+    // Constantes para SharedPreferences
+    private static final String NOMBRE_PREFS = "MisPreferencias";
+    private static final String CLAVE_VISTO_CARGA = "hanVistoCarga";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        boolean hasSeenLoading = prefs.getBoolean(KEY_HAS_SEEN_LOADING, false); // Por defecto es false (no vista aún)
+        // Cargar preferencias para saber si la pantalla de carga ya se ha visto
+        SharedPreferences prefs = getSharedPreferences(NOMBRE_PREFS, Context.MODE_PRIVATE);
+        boolean haVistoCarga = prefs.getBoolean(CLAVE_VISTO_CARGA, false); // Por defecto es false (no vista aún)
 
-        if (hasSeenLoading) {
+        if (haVistoCarga) {
             // Si ya se vio la pantalla de carga, ocultar el overlay inmediatamente y asegurar que el contenido principal sea visible.
             findViewById(R.id.loading_overlay).setVisibility(View.GONE);
             findViewById(R.id.main_menu_content).setVisibility(View.VISIBLE); // Asegurar visibilidad del menú
         } else {
             // Es la primera vez que se carga o no se ha visto la pantalla de carga completa
-            // 1. Encontrar las vistas de la capa de carga ---
+            // 1. Encontrar las vistas de la capa de carga
             loadingOverlay = findViewById(R.id.loading_overlay);
             loadingContentContainer = findViewById(R.id.loading_content_container);
             progressBar = findViewById(R.id.progressBar);
 
-            // 2. Mostrar la capa de carga inicialmente ---
+            // 2. Mostrar la capa de carga inicialmente
             loadingOverlay.setVisibility(View.VISIBLE);
             loadingOverlay.setClickable(true);
             loadingOverlay.setFocusable(true);
 
-            // -3. Iniciar la animación de carga secundaria ---
+            // 3. Iniciar la animación de carga secundaria
             iniciarCargaSecundaria();
         }
 
-        // 4. Inicializar los botones del menú principal (estarán debajo del overlay o visibles directamente) ---
+        // 4. Inicializar los botones del menú principal (estarán debajo del overlay o visibles directamente)
         Button btnPruebaHistoria = findViewById(R.id.btn_prueba_historia);
         Button btnNivelador = findViewById(R.id.btn_nivelador);
         Button btnDetectorMetales = findViewById(R.id.btn_detector_metales);
@@ -87,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 iniciarFadeOutCargaSecundaria();
 
                 // Al finalizar la carga, marcar que ya se vio la pantalla de carga
-                SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                SharedPreferences prefs = getSharedPreferences(NOMBRE_PREFS, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean(KEY_HAS_SEEN_LOADING, true); // Marcar como vista
+                editor.putBoolean(CLAVE_VISTO_CARGA, true); // Marcar como vista
                 editor.apply();
             }
         }.start();

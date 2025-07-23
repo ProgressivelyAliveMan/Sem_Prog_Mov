@@ -71,7 +71,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-
         // Inicializar vistas del Quiz
         tvPreguntaNumero = findViewById(R.id.pregunta_numero);
         tvPreguntaTexto = findViewById(R.id.pregunta_texto);
