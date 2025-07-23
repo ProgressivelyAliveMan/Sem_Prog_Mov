@@ -1,41 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selecciona una opción"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="48dp"/>
-
-    <Button
-        android:id="@+id/btn_prueba_matematica"
+    <LinearLayout
+        android:id="@+id/main_menu_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Prueba Matemática"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_acelerometro"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona una opción"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="48dp"/>
+
+        <Button
+            android:id="@+id/btn_prueba_historia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="¿Qué tanto sabes de historia panameña?" />
+
+        <Button
+            android:id="@+id/btn_nivelador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Nivelador de burbuja" />
+
+        <Button
+            android:id="@+id/btn_detector_metales"  android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Detector de metales" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_overlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Acelerómetro"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true">
+        <LinearLayout
+            android:id="@+id/loading_content_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_detector_metales"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Detector de Metales"
-        android:layout_marginBottom="16dp"/>
+            <TextView
+                android:id="@+id/saludo_texto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="¡Hola! 👋"
+                android:textColor="#333333"
+                android:textSize="34sp" />
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/imagen_logo_utp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="Logo de la UTP"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_utp" />
+
+            <TextView
+                android:id="@+id/titulo_texto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Bienvenido a HistoSensores"
+                android:textColor="#555555"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:max="100" />
+
+    </RelativeLayout>
+
+</FrameLayout>

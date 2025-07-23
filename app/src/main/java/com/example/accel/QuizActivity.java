@@ -1,6 +1,5 @@
 package com.example.accel;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +16,6 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rbOpcion1, rbOpcion2, rbOpcion3;
     private Button btnVerificar;
 
-
-    private Button btnVolverMenuQuiz;
 
     private final String[] preguntas = {
             "¿Quién fue el primer europeo en ver el Océano Pacífico desde Panamá?",
@@ -64,7 +61,7 @@ public class QuizActivity extends AppCompatActivity {
         btnVerificar = findViewById(R.id.boton_verificar);
 
         // Inicializar el botón de volver al menú
-        btnVolverMenuQuiz = findViewById(R.id.btn_volver_menu_quiz);
+        Button btnVolverMenuQuiz = findViewById(R.id.btn_volver_menu_quiz);
 
         mostrarPregunta();
 

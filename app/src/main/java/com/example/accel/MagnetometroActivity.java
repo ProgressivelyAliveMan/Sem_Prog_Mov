@@ -1,6 +1,5 @@
 package com.example.accel;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,17 +7,20 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.util.Log;
+import java.util.Locale;
 
 public class MagnetometroActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final String TAG = "MagnetometroActivity"; // Etiqueta para el logging
     private SensorManager sensorManager;
     private Sensor magnetometro;
     private TextView datosMagnetometro;
@@ -27,7 +29,7 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
     private Vibrator vibrator;
     private boolean isMetalDetected = false;
 
-    private static final double UMBRAL_DETECCION_METAL = 75.0;
+    private static final double UMBRAL_DETECCION_METAL = 75.0; // Ajustar este umbral
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,9 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
 
         datosMagnetometro = findViewById(R.id.magnetometer_datos);
         estadoDeteccion = findViewById(R.id.estado_deteccion);
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        sensorManager = getSystemService(SensorManager.class);
+        vibrator = getSystemService(Vibrator.class);
 
         try {
             mediaPlayer = MediaPlayer.create(this, R.raw.beep);
@@ -47,7 +50,8 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
                 Toast.makeText(this, "Usando tono de notificación predeterminado para el detector.", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // Reemplazado e.printStackTrace() con Log.e()
+            Log.e(TAG, "Error al cargar beep.mp3, usando tono predeterminado.", e);
             Uri notificationUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             mediaPlayer = MediaPlayer.create(this, notificationUri);
             Toast.makeText(this, "Error al cargar beep.mp3, usando tono predeterminado.", Toast.LENGTH_LONG).show();
@@ -74,7 +78,7 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
     @Override
     protected void onResume() {
         super.onResume();
-        if (magnetometro != null) {
+        if (magnetometro != null && sensorManager != null) {
             sensorManager.registerListener(this, magnetometro, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
@@ -105,19 +109,20 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
 
             double magnitud = Math.sqrt(x*x + y*y + z*z);
 
-            String data = String.format("Eje X: %.2f μT\nEje Y: %.2f μT\nEje Z: %.2f μT\nMagnitud: %.2f μT", x, y, z, magnitud);
+            // Se usa Locale.getDefault() para un formato consistente
+            String data = String.format(Locale.getDefault(), "Eje X: %.2f μT\nEje Y: %.2f μT\nEje Z: %.2f μT\nMagnitud: %.2f μT", x, y, z, magnitud);
             datosMagnetometro.setText(data);
 
             if (magnitud > UMBRAL_DETECCION_METAL) {
                 estadoDeteccion.setText("¡METAL DETECTADO! 🚨");
-                estadoDeteccion.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                estadoDeteccion.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light));
                 if (!isMetalDetected) {
                     reproducirSonidoVibracion();
                     isMetalDetected = true;
                 }
             } else {
                 estadoDeteccion.setText("Sin detección de metal ✅");
-                estadoDeteccion.setTextColor(getResources().getColor(android.R.color.holo_green_light));
+                estadoDeteccion.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light));
                 isMetalDetected = false;
             }
         }
@@ -133,11 +138,7 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
         }
 
         if (vibrator != null && vibrator.hasVibrator()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
-            } else {
-                vibrator.vibrate(200);
-            }
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
         }
     }
 

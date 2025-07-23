@@ -15,12 +15,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.Locale;
+
 public class AcelerometroActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor acelerometro;
     private TextView acelerometroDatos;
-    private Button btnVolver;
     private ConstraintLayout mainLayout;
 
     @Override
@@ -31,7 +32,7 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
         // Inicializar vistas
         acelerometroDatos = findViewById(R.id.acelerometro_datos);
         mainLayout = findViewById(R.id.main_layout); // Conectar con el layout
-        btnVolver = findViewById(R.id.boton_volver);
+        Button btnVolver = findViewById(R.id.boton_volver);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -77,7 +78,7 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
             float y = event.values[1];
             float z = event.values[2]; // Este valor representa la gravedad en el eje Z
 
-            String data = String.format("X: %.2f\nY: %.2f\nGravedad: %.2f", x, y, z);
+            String data = String.format(Locale.getDefault(), "X: %.2f\nY: %.2f\nGravedad: %.2f", x, y, z);
             acelerometroDatos.setText(data);
 
             // Comprueba si el valor de Z (gravedad) está dentro del rango deseado.
