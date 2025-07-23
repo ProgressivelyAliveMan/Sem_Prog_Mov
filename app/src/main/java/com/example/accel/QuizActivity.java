@@ -1,6 +1,5 @@
 package com.example.accel;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,10 +95,6 @@ public class QuizActivity extends AppCompatActivity {
         btnVolverMenuQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Este botón tiene un comportamiento específico para volver a MainActivity
-                Intent intent = new Intent(QuizActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
                 finish(); // Finaliza esta actividad
             }
         });

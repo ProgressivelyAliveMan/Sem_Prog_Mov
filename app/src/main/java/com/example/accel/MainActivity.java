@@ -1,8 +1,6 @@
 package com.example.accel;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -20,40 +18,25 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout loadingOverlay;
     private LinearLayout loadingContentContainer;
 
-    // Constantes para SharedPreferences
-    private static final String NOMBRE_PREFS = "MisPreferencias";
-    private static final String CLAVE_VISTO_CARGA = "hanVistoCarga";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Cargar preferencias para saber si la pantalla de carga ya se ha visto
-        SharedPreferences prefs = getSharedPreferences(NOMBRE_PREFS, Context.MODE_PRIVATE);
-        boolean haVistoCarga = prefs.getBoolean(CLAVE_VISTO_CARGA, false); // Por defecto es false (no vista aún)
+        // 1. Encontrar las vistas de la capa de carga
+        loadingOverlay = findViewById(R.id.loading_overlay);
+        loadingContentContainer = findViewById(R.id.loading_content_container);
+        progressBar = findViewById(R.id.progressBar);
 
-        if (haVistoCarga) {
-            // Si ya se vio la pantalla de carga, ocultar el overlay inmediatamente y asegurar que el contenido principal sea visible.
-            findViewById(R.id.loading_overlay).setVisibility(View.GONE);
-            findViewById(R.id.main_menu_content).setVisibility(View.VISIBLE); // Asegurar visibilidad del menú
-        } else {
-            // Es la primera vez que se carga o no se ha visto la pantalla de carga completa
-            // 1. Encontrar las vistas de la capa de carga
-            loadingOverlay = findViewById(R.id.loading_overlay);
-            loadingContentContainer = findViewById(R.id.loading_content_container);
-            progressBar = findViewById(R.id.progressBar);
+        // 2. Mostrar la capa de carga inicialmente
+        loadingOverlay.setVisibility(View.VISIBLE);
+        loadingOverlay.setClickable(true);
+        loadingOverlay.setFocusable(true);
 
-            // 2. Mostrar la capa de carga inicialmente
-            loadingOverlay.setVisibility(View.VISIBLE);
-            loadingOverlay.setClickable(true);
-            loadingOverlay.setFocusable(true);
+        // 3. Iniciar la animación de carga secundaria
+        iniciarCargaSecundaria();
 
-            // 3. Iniciar la animación de carga secundaria
-            iniciarCargaSecundaria();
-        }
-
-        // 4. Inicializar los botones del menú principal (estarán debajo del overlay o visibles directamente)
+        // Inicializar los botones del menú principal
         Button btnPruebaHistoria = findViewById(R.id.btn_prueba_historia);
         Button btnNivelador = findViewById(R.id.btn_nivelador);
         Button btnDetectorMetales = findViewById(R.id.btn_detector_metales);
@@ -76,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Método para iniciar la animación de la barra de progreso
     private void iniciarCargaSecundaria() {
+        // Asegúrate de que el menú principal esté GONE al inicio, antes de la carga.
+        // Esto es importante si la actividad puede ser recreada.
+        findViewById(R.id.main_menu_content).setVisibility(View.GONE);
+
         new CountDownTimer(SECONDARY_LOADING_DURATION, 30) {
             @Override
             public void onTick(long tiempoFin) {
@@ -87,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 progressBar.setProgress(100);
                 iniciarFadeOutCargaSecundaria();
-
-                // Al finalizar la carga, marcar que ya se vio la pantalla de carga
-                SharedPreferences prefs = getSharedPreferences(NOMBRE_PREFS, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean(CLAVE_VISTO_CARGA, true); // Marcar como vista
-                editor.apply();
             }
         }.start();
     }

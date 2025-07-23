@@ -1,7 +1,6 @@
 package com.example.accel;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -96,9 +95,6 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
             @Override
             public void onClick(View v) {
                 // Navega de vuelta a MainActivity, limpiando el historial de actividades.
-                Intent intent = new Intent(AcelerometroActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
                 finish();
             }
         });

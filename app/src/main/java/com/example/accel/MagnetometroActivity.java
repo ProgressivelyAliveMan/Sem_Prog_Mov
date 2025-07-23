@@ -1,6 +1,5 @@
 package com.example.accel;
 
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -118,9 +117,6 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
         // Configura el botón para volver al menú principal.
         Button btnVolver = findViewById(R.id.boton_volver_magnetometro);
         btnVolver.setOnClickListener(v -> {
-            Intent intent = new Intent(MagnetometroActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Limpia pila de Activities.
-            startActivity(intent);
             finish();
         });
 
