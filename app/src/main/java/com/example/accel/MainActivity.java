@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MenuActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,17 +17,17 @@ public class MenuActivity extends AppCompatActivity {
         Button btnDetectorMetales = findViewById(R.id.btn_detector_metales);
 
         btnPruebaMatematica.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, QuizActivity.class);
+            Intent intent = new Intent(MainActivity.this, QuizActivity.class);
             startActivity(intent);
         });
 
         btnAcelerometro.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, AccelerometerActivity.class);
+            Intent intent = new Intent(MainActivity.this, AcelerometroActivity.class);
             startActivity(intent);
         });
 
         btnDetectorMetales.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, MagnetometerActivity.class);
+            Intent intent = new Intent(MainActivity.this, MagnetometroActivity.class);
             startActivity(intent);
         });
     }

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".MenuActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

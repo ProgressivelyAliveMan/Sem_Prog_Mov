@@ -57,7 +57,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 // Cuando la animación de salida termina, inicia la siguiente actividad.
-                Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish(); // Cierra esta actividad para que no se pueda volver a ella
             }

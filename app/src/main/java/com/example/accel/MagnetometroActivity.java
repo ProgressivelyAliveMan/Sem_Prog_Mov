@@ -17,7 +17,7 @@ import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 
-public class MagnetometerActivity extends AppCompatActivity implements SensorEventListener {
+public class MagnetometroActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor magnetometro;
@@ -27,7 +27,7 @@ public class MagnetometerActivity extends AppCompatActivity implements SensorEve
     private Vibrator vibrator;
     private boolean isMetalDetected = false;
 
-    private static final double UMBRAL_DETECCION_METAL = 80.0;
+    private static final double UMBRAL_DETECCION_METAL = 75.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
