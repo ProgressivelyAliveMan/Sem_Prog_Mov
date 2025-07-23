@@ -32,7 +32,7 @@ public class MagnetometroActivity extends AppCompatActivity implements SensorEve
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_magnetometer);
+        setContentView(R.layout.activity_magnetometro);
 
         datosMagnetometro = findViewById(R.id.magnetometer_datos);
         estadoDeteccion = findViewById(R.id.estado_deteccion);
