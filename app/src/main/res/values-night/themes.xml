@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- modo dark -->
     <style name="Theme.Accel" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -9,9 +8,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:windowBackground">@color/dark_gray</item>
-        <!-- text color -->
-        <item name="android:textColor">@color/white</item>
-    </style>
+        <item name="menuPrincipalColor">@android:color/white</item> </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dark_gray</item>

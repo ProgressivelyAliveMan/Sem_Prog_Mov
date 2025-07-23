@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:text="¡Elige tu aventura!"
-            android:textColor="#333333"
+            android:textColor="?attr/menuPrincipalColor"
             android:textSize="26sp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="normal" />
