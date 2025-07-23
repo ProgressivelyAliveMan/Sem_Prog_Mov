@@ -1,59 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/main_menu_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/main_menu_logo_utp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo_utp"
+            android:contentDescription="Logo de la UTP"
+            android:layout_marginBottom="32dp" />
 
         <TextView
-            android:id="@+id/menu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HistoSensores"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="40dp"
+            android:text="¡Elige tu aventura!"
+            android:textColor="#333333"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="normal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selecciona una opción"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="48dp"/>
-
-        <Button
-            android:id="@+id/btn_prueba_historia"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#8B1BEF"
-            android:text="¿Qué tanto sabes de historia panameña?" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
 
-        <Button
-            android:id="@+id/btn_nivelador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#127D8E"
-            android:text="Nivelador de burbuja" />
+            <Button
+                android:id="@+id/btn_prueba_historia"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Quiz de historia"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:backgroundTint="#22249E"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_quizhistoria"
+                app:iconGravity="top"
+                app:iconTint="@color/white" />
 
-        <Button
-            android:id="@+id/btn_detector_metales"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#CAA001"
-            android:text="Detector de metales" />
+            <Button
+                android:id="@+id/btn_nivelador"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Nivelador de burbuja"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:backgroundTint="@android:color/holo_green_dark"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_acelerometro"
+                app:iconGravity="top"
+                app:iconTint="@color/white" />
+
+            <Button
+                android:id="@+id/btn_detector_metales"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Detector de metales"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:backgroundTint="#AB9F3C"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_magnetometro"
+                app:iconGravity="top"
+                app:iconTint="@color/white" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -63,7 +109,8 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/loading_content_container"
@@ -96,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Bienvenido a HistoSensores"
+                android:text="¡Bienvenido a HistoSensores!"
                 android:textColor="#555555"
                 android:textSize="22sp" />
 
@@ -109,9 +156,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="100dp"
             android:max="100" />
 
     </RelativeLayout>
 
-</FrameLayout>
+</LinearLayout>
